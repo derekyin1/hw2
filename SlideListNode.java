@@ -37,5 +37,4 @@ public class SlideListNode{
     prev = newPrev;
   }
 
-
 }
