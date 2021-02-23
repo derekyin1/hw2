@@ -15,7 +15,7 @@ public class SlideListNode{
   }
 
   public void setData(Slide newData){
-    if (newData != null)]{
+    if (newData != null){
       data = newData;
     }
     else throw new IllegalArgumentException();
