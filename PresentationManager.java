@@ -283,13 +283,20 @@ public class PresentationManager{
       }
 
       if (s.equals("R") || s.equals("r")){
-        try{
-          String title = newList.getCursorSlide().getTitle();
-          newList.removeCursor();
-          System.out.println("Slide " + title + " has been removed.");
-        }
-        catch (EndOfListException e){
+        if (newList.getCursorSlide() != null){
+          try{
+            String title = newList.getCursorSlide().getTitle();
+            newList.removeCursor();
+            System.out.println("Slide " + title + " has been removed.");
+          }
+          catch (EndOfListException e){
 
+          }
+        }
+        else{
+          System.out.println("Cursor is empty.");
+          isRunning = false;
+          isRunning = true;
         }
       }
 

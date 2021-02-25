@@ -33,7 +33,10 @@ public class SlideList{
   }
 
   public Slide getCursorSlide(){
-    return cursor.getData();
+    if (cursor == null){
+      return null;
+    }
+    else return cursor.getData();
   }
 
   public void resetCursorToHead(){
