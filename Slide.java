@@ -1,8 +1,8 @@
 /** Derek Yin 113251504 Recitation Section 1
-  This class defines the Slide object, which stores a title, duration, and bullet points
-
-  @author Derek Yin
-
+*  This class defines the Slide object, which stores a title, duration, and bullet points
+*
+*  @author Derek Yin
+*
 */
 
 public class Slide{
@@ -14,7 +14,7 @@ public class Slide{
   private double duration;
   private int bulCount;
 /** This constructor creates a Slide object with duration and bullet count set to 0.
-
+*
 */
   public Slide(){
     duration = 0.0;
@@ -22,13 +22,13 @@ public class Slide{
   }
 
 /** This constructor creates a Slide object with desired title and duration.
-
-@param newTitle
-Desired title of slide
-
-@param newDuration
-Desired duration of Slide
-
+*
+*@param newTitle
+*Desired title of slide
+*
+*@param newDuration
+*Desired duration of Slide
+*
 */
   public Slide(String newTitle, double newDuration){
     title = newTitle;
@@ -37,22 +37,22 @@ Desired duration of Slide
   }
 
 /** This method returns the title of a Slide
-
-@return
-Returns title of Slide
-
+*
+*@return
+*Returns title of Slide
+*
 */
   public String getTitle(){
     return title;
   }
 /** This method sets the title of a Slide
-
-@param newTitle
-Desired title of a Slide.
-
-@throws
-IllegalArgumentException when newTitle is null.
-
+*
+*@param newTitle
+*Desired title of a Slide.
+*
+*@throws
+*IllegalArgumentException when newTitle is null.
+*
 */
   public void setTitle(String newTitle){
     if (newTitle != null){
@@ -61,19 +61,19 @@ IllegalArgumentException when newTitle is null.
     else throw new IllegalArgumentException();
   }
 /** This method returns the duration of a slide.
-@return
-returns duration of slide.
-
+*@return
+*returns duration of slide.
+*
 */
   public double getDuration(){
     return duration;
   }
 /** This method sets the duration of a Slide
-@param newDuration
-Desired duration of slide.
-
-@throws
-IllegalArgumentException when desired duration is less than 0.
+*@param newDuration
+*Desired duration of slide.
+*
+*@throws
+*IllegalArgumentException when desired duration is less than 0.
 */
 
   public void setDuration(double newDuration){
@@ -83,26 +83,26 @@ IllegalArgumentException when desired duration is less than 0.
     else throw new IllegalArgumentException();
   }
 /** This method returns the number of bullets in a Slide.
-
-@return
-num. of bullets in a Slide.
-
+*
+*@return
+*num. of bullets in a Slide.
+*
 */
   public int getNumBullets(){
     return bulCount;
   }
 
 /** This method returns the bullet at a desired index.
-
-@param i
-Bullet index
-
-@return
-Returns bullet at desired index.
-
-@throws
-IllegalArgumentException when index is invalid.
-
+*
+*@param i
+*Bullet index
+*
+*@return
+*Returns bullet at desired index.
+*
+*@throws
+*IllegalArgumentException when index is invalid.
+*
 }
 
 */
@@ -117,13 +117,13 @@ IllegalArgumentException when index is invalid.
     else throw new IllegalArgumentException();
   }
 /**This method sets a bullet at a certain index. It can also delete a bullet point.
-@param bullet
-Desired desciption of bullet
-@param i
-Desired bullet index
-
-@throws
-IllegalArgumentException when index is invalid.
+*@param bullet
+*Desired desciption of bullet
+*@param i
+*Desired bullet index
+*
+*@throws
+*IllegalArgumentException when index is invalid.
 */
   public void setBullet(String bullet, int i){
     if (i >= 1 && i <= MAX_BULLETS){
@@ -145,17 +145,38 @@ IllegalArgumentException when index is invalid.
     else throw new IllegalArgumentException();
   }
 
-public String arrayToString(){
-  String toPrint = "";
-  for (int i = 0; i < MAX_BULLETS; i++){
-    toPrint += bullets[i] + ",";
-  }
-  return toPrint;
-}
-/**This method formats a Slide in a String form to be printed in the terminal
 
-@return
-Returns formatted String that describes a Slide.
+/** This method deletes the duration of a slide.
+*
+*
+*/
+  public void delDuration(){
+    duration = 0;
+
+  }
+
+/** This method checks if the Duration of the slide is deleted, that is, if it is 0.
+*
+*@return
+*returns String "Not Set" if duration is 0, and returns Double duration if not 0.
+*
+*/
+
+  public Object checkDeletion(){
+    Object check = null;
+    if (this.getDuration() == 0){
+      check = "Not set.";
+      return (String) check;
+    }
+    else{
+      check = this.getDuration();
+      return (double) check;
+    }
+  }
+/**This method formats a Slide in a String form to be printed in the terminal
+*
+*@return
+*Returns formatted String that describes a Slide.
 */
   public String toString(){
     String toPrint = "";

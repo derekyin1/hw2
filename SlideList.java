@@ -1,7 +1,7 @@
 /** Derek Yin 113251504 Recitation Section 1
-  This class defines a doubly linked list of Slide objects.
-
-  @author Derek Yin
+*  This class defines a doubly linked list of Slide objects.
+*
+*  @author Derek Yin
 */
 
 public class SlideList{
@@ -11,22 +11,22 @@ public class SlideList{
   private int size;
 
 /** This is a constructor that creates a new SlideList with a size of 0.
-
+*
 */
   public SlideList(){
     size = 0;
   }
 
 /** This is a method that returns the size of the SlideList.
-@return
-returns amount of Slides of SlideList.
+*@return
+*returns amount of Slides of SlideList.
 */
   public int size(){
     return size;
   }
 /** This method returns the total duration of all the Slides in a SlideList.
-@return
-returns total duration of SlideList
+*@return
+*returns total duration of SlideList
 */
   public double duration(){
     double duration = 0;
@@ -38,9 +38,9 @@ returns total duration of SlideList
     return duration;
   }
 /** This method returns the total number of bullets in a SlideList.
-
-@return
-returns total bullets in a SlideList.
+*
+*@return
+*returns total bullets in a SlideList.
 */
   public int numBullets(){
     int numBullets = 0;
@@ -52,9 +52,9 @@ returns total bullets in a SlideList.
     return numBullets;
   }
 /** This method returns the slide currently at the cursor position.
-
-@return
-returns slide at cursor position.
+*
+*@return
+*returns slide at cursor position.
 */
   public Slide getCursorSlide(){
     if (cursor == null){
@@ -67,10 +67,14 @@ returns slide at cursor position.
   public void resetCursorToHead(){
     cursor = head;
   }
-/** This method moves the cursor forward one index.
 
-@throws
-throws EndOfListException if reached end of list.
+
+
+
+/** This method moves the cursor forward one index.
+*
+*@throws
+*throws EndOfListException if reached end of list.
 */
   public void cursorForward() throws EndOfListException {
     if (cursor != tail){
@@ -79,9 +83,9 @@ throws EndOfListException if reached end of list.
     else throw new EndOfListException("");
   }
 /** This method moves the cursor backward one index.
-
-@throws
-throws EndOfListException if reached end of list.
+*
+*@throws
+*throws EndOfListException if reached end of list.
 */
   public void cursorBackward() throws EndOfListException {
     if (cursor != head){
@@ -90,13 +94,13 @@ throws EndOfListException if reached end of list.
     else throw new EndOfListException("");
   }
 /** This method inserts a Slide one index before the cursor.
-
-@param newSlide
-the new slide to be added
-
-@throws
-throws IllegalArgumentException if slide is null.
-
+*
+*@param newSlide
+*the new slide to be added
+*
+*@throws
+*throws IllegalArgumentException if slide is null.
+*
 */
   public void insertBeforeCursor(Slide newSlide){
     if (newSlide != null){
@@ -126,13 +130,13 @@ throws IllegalArgumentException if slide is null.
     else throw new IllegalArgumentException();
   }
 /** This method adds a new slide to the end of the SlideList.
-
-@param newSlide
-the slide to be added
-
-@throws
-throws IllegalArgumentException if slide is null.
-
+*
+*@param newSlide
+*the slide to be added
+*
+*@throws
+*throws IllegalArgumentException if slide is null.
+*
 */
   public void appendToTail(Slide newSlide){
     if (newSlide != null){
@@ -153,12 +157,12 @@ throws IllegalArgumentException if slide is null.
   }
 
 /** This method removes the slide at the cursor position
-
-@return
-returns the removed Slides
-
-@throws
-throws EndOfListException if cursor is null
+*
+*@return
+*returns the removed Slides
+*
+*@throws
+*throws EndOfListException if cursor is null
 */
   public Slide removeCursor() throws EndOfListException{
     if (cursor != null){
@@ -193,10 +197,10 @@ throws EndOfListException if cursor is null
   }
 
 /** This method creates a formatted string to be printed in the terminal.
-
-@return
-Returns the formatted Slide description in string form, including title, duration, and number of bullets
-
+*
+*@return
+*Returns the formatted Slide description in string form, including title, duration, and number of bullets
+*
 */
   public String toString(){
     String toPrint = "Slideshow Summary:";
@@ -206,10 +210,10 @@ Returns the formatted Slide description in string form, including title, duratio
     SlideListNode init = head;
     for (int i = 1; i <= size; i++){
       if (cursor == init){
-        toPrint += String.format("%-11s%-20s%-14s%6s", "-> " + i, init.getData().getTitle(), init.getData().getDuration(), init.getData().getNumBullets());
+        toPrint += String.format("%-11s%-20s%-14s%6s", "-> " + i, init.getData().getTitle(), init.getData().checkDeletion(), init.getData().getNumBullets());
       }
       else{
-        toPrint += String.format("%-11s%-20s%-14s%6s", "   " + i, init.getData().getTitle(), init.getData().getDuration(), init.getData().getNumBullets());
+        toPrint += String.format("%-11s%-20s%-14s%6s", "   " + i, init.getData().getTitle(), init.getData().checkDeletion(), init.getData().getNumBullets());
       }
       toPrint += "\n";
       init = init.getNext();

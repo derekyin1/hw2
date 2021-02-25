@@ -1,16 +1,16 @@
 /**Derek Yin 113251504 Recitation Section 1
-
-This class runs a terminal menu that allows users to manage a slideshow presentation.
-
-@author Derek Yin
-
+*
+*This class runs a terminal menu that allows users to manage a slideshow presentation.
+*
+*@author Derek Yin
+*
 */
 
 import java.util.Scanner;
 public class PresentationManager{
 
 /**This method runs the terminal menu and gives choices to the user.
-
+*
 */
   public static void main(String[] args) {
     SlideList newList = new SlideList();
@@ -94,7 +94,7 @@ public class PresentationManager{
             System.out.println("Delete or edit? (d/e)");
             String or = in.nextLine();
             if (or.equals("d")){
-              newList.getCursorSlide().setDuration(0.1);
+              newList.getCursorSlide().delDuration();
               System.out.println("Duration deleted.");
             }
             if (or.equals("e")){
