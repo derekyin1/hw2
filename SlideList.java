@@ -1,17 +1,33 @@
+/** Derek Yin 113251504 Recitation Section 1
+  This class defines a doubly linked list of Slide objects.
+
+  @author Derek Yin
+*/
+
 public class SlideList{
   private SlideListNode head;
   private SlideListNode tail;
   private SlideListNode cursor;
   private int size;
 
+/** This is a constructor that creates a new SlideList with a size of 0.
+
+*/
   public SlideList(){
     size = 0;
   }
 
+/** This is a method that returns the size of the SlideList.
+@return
+returns amount of Slides of SlideList.
+*/
   public int size(){
     return size;
   }
-
+/** This method returns the total duration of all the Slides in a SlideList.
+@return
+returns total duration of SlideList
+*/
   public double duration(){
     double duration = 0;
     SlideListNode nodePtr = head;
@@ -21,7 +37,11 @@ public class SlideList{
     }
     return duration;
   }
+/** This method returns the total number of bullets in a SlideList.
 
+@return
+returns total bullets in a SlideList.
+*/
   public int numBullets(){
     int numBullets = 0;
     SlideListNode nodePtr = head;
@@ -31,30 +51,53 @@ public class SlideList{
     }
     return numBullets;
   }
+/** This method returns the slide currently at the cursor position.
 
+@return
+returns slide at cursor position.
+*/
   public Slide getCursorSlide(){
     if (cursor == null){
       return null;
     }
     else return cursor.getData();
   }
-
+/** This method resets the cursor position to the beginning of the SlideList.
+*/
   public void resetCursorToHead(){
     cursor = head;
   }
+/** This method moves the cursor forward one index.
 
-  public void cursorForward() {
+@throws
+throws EndOfListException if reached end of list.
+*/
+  public void cursorForward() throws EndOfListException {
     if (cursor != tail){
       cursor = cursor.getNext();
     }
+    else throw new EndOfListException("");
   }
+/** This method moves the cursor backward one index.
 
-  public void cursorBackward() {
+@throws
+throws EndOfListException if reached end of list.
+*/
+  public void cursorBackward() throws EndOfListException {
     if (cursor != head){
       cursor = cursor.getPrev();
     }
+    else throw new EndOfListException("");
   }
+/** This method inserts a Slide one index before the cursor.
 
+@param newSlide
+the new slide to be added
+
+@throws
+throws IllegalArgumentException if slide is null.
+
+*/
   public void insertBeforeCursor(Slide newSlide){
     if (newSlide != null){
       SlideListNode newNode = new SlideListNode(newSlide);
@@ -82,7 +125,15 @@ public class SlideList{
     }
     else throw new IllegalArgumentException();
   }
+/** This method adds a new slide to the end of the SlideList.
 
+@param newSlide
+the slide to be added
+
+@throws
+throws IllegalArgumentException if slide is null.
+
+*/
   public void appendToTail(Slide newSlide){
     if (newSlide != null){
       SlideListNode newNode = new SlideListNode(newSlide);
@@ -101,6 +152,14 @@ public class SlideList{
     else throw new IllegalArgumentException();
   }
 
+/** This method removes the slide at the cursor position
+
+@return
+returns the removed Slides
+
+@throws
+throws EndOfListException if cursor is null
+*/
   public Slide removeCursor() throws EndOfListException{
     if (cursor != null){
       Slide oldSlide = cursor.getData();
@@ -133,6 +192,12 @@ public class SlideList{
     } */
   }
 
+/** This method creates a formatted string to be printed in the terminal.
+
+@return
+Returns the formatted Slide description in string form, including title, duration, and number of bullets
+
+*/
   public String toString(){
     String toPrint = "Slideshow Summary:";
     toPrint += "\n=========================================================\n";
@@ -155,16 +220,5 @@ public class SlideList{
     return toPrint;
   }
 
-  public static void main(String[] args) {
-    SlideList test = new SlideList();
-    Slide testSlide = new Slide("Test one", 1.4);
-    testSlide.setBullet("Haha", 1);
-    testSlide.setBullet(null, 1);
-    test.insertBeforeCursor(testSlide);
-    test.insertBeforeCursor(testSlide);
-    test.insertBeforeCursor(testSlide);
-    test.appendToTail(testSlide);
-    test.insertBeforeCursor(testSlide);
-    System.out.println(test.toString());
-  }
+
 }

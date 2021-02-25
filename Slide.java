@@ -1,35 +1,80 @@
+/** Derek Yin 113251504 Recitation Section 1
+  This class defines the Slide object, which stores a title, duration, and bullet points
+
+  @author Derek Yin
+
+*/
+
 public class Slide{
+/** MAX_BULLETS represents maximum number of bullets allowed per slide.
+*/
   public static final int MAX_BULLETS = 5;
   private String title;
   private String[] bullets = new String[MAX_BULLETS];
   private double duration;
   private int bulCount;
+/** This constructor creates a Slide object with duration and bullet count set to 0.
 
+*/
   public Slide(){
     duration = 0.0;
     bulCount=0;
   }
 
+/** This constructor creates a Slide object with desired title and duration.
+
+@param newTitle
+Desired title of slide
+
+@param newDuration
+Desired duration of Slide
+
+*/
   public Slide(String newTitle, double newDuration){
     title = newTitle;
     duration = newDuration;
     bulCount = 0;
   }
 
+/** This method returns the title of a Slide
+
+@return
+Returns title of Slide
+
+*/
   public String getTitle(){
     return title;
   }
+/** This method sets the title of a Slide
 
+@param newTitle
+Desired title of a Slide.
+
+@throws
+IllegalArgumentException when newTitle is null.
+
+*/
   public void setTitle(String newTitle){
     if (newTitle != null){
       title = newTitle;
     }
     else throw new IllegalArgumentException();
   }
+/** This method returns the duration of a slide.
+@return
+returns duration of slide.
 
+*/
   public double getDuration(){
     return duration;
   }
+/** This method sets the duration of a Slide
+@param newDuration
+Desired duration of slide.
+
+@throws
+IllegalArgumentException when desired duration is less than 0.
+*/
 
   public void setDuration(double newDuration){
     if (newDuration > 0.0){
@@ -37,11 +82,30 @@ public class Slide{
     }
     else throw new IllegalArgumentException();
   }
+/** This method returns the number of bullets in a Slide.
 
+@return
+num. of bullets in a Slide.
+
+*/
   public int getNumBullets(){
     return bulCount;
   }
 
+/** This method returns the bullet at a desired index.
+
+@param i
+Bullet index
+
+@return
+Returns bullet at desired index.
+
+@throws
+IllegalArgumentException when index is invalid.
+
+}
+
+*/
   public String getBullet(int i){
     String bullet = "";
     if (i >= 1 && i <= MAX_BULLETS){
@@ -50,7 +114,15 @@ public class Slide{
     }
     else throw new IllegalArgumentException();
   }
+/**This method sets a bullet at a certain index. It can also delete a bullet point.
+@param bullet
+Desired desciption of bullet
+@param i
+Desired bullet index
 
+@throws
+IllegalArgumentException when index is invalid.
+*/
   public void setBullet(String bullet, int i){
     if (i >= 1 && i <= MAX_BULLETS){
       if (bullet != null){
@@ -70,6 +142,11 @@ public class Slide{
     else throw new IllegalArgumentException();
   }
 
+/**This method formats a Slide in a String form to be printed in the terminal
+
+@return
+Returns formatted String that describes a Slide.
+*/
   public String toString(){
     String toPrint = "";
     toPrint += "\n=========================================================\n";
@@ -81,13 +158,6 @@ public class Slide{
     }
     toPrint += "\n=========================================================\n";
     return toPrint;
-  }
-
-  public static void main(String[] args) {
-    Slide test = new Slide("chicken", 12.4);
-    test.setBullet("This is a test!", 1);
-    test.setBullet("This is the second test!", 3);
-    System.out.println(test.toString());
   }
 
 
