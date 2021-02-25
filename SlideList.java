@@ -61,6 +61,7 @@ public class SlideList{
           newNode.setPrev(cursor.getPrev());
           newNode.setNext(cursor);
           cursor.setPrev(newNode);
+          cursor = newNode;
         }
         if (cursor.getPrev() == null){
           newNode.setNext(cursor);
@@ -100,16 +101,33 @@ public class SlideList{
   public Slide removeCursor() throws EndOfListException{
     if (cursor != null){
       Slide oldSlide = cursor.getData();
-      cursor.getPrev().setNext(cursor.getNext());
-      cursor.getNext().setPrev(cursor.getPrev());
-      if (cursor != head){
+      if (head == cursor && cursor.getNext() != null){
+        head = cursor.getNext();
+        cursor = head;
+      }
+      else if (tail == cursor && cursor.getPrev() != null){
+        tail = cursor.getPrev();
+        cursor = tail;
+      }
+      else if (cursor.getNext() != null && cursor.getPrev() != null){
+        cursor.getNext().setPrev(cursor.getPrev());
+        cursor.getPrev().setNext(cursor.getNext());
         cursor = cursor.getPrev();
       }
-      else cursor = head;
-
+      else if (tail == cursor && head == cursor){
+        head = null;
+        tail = null;
+        cursor = null;
+      }
+      size--;
       return oldSlide;
     }
-    else throw new EndOfListException("");
+    else{
+      throw new EndOfListException("");
+    }
+  /*  else{
+      throw new IllegalArgumentException("");
+    } */
   }
 
   public String toString(){

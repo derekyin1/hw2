@@ -79,6 +79,7 @@ public class PresentationManager{
             int index = in.nextInt();
             if (index > 0 && index <= newList.getCursorSlide().getNumBullets()){
               System.out.println("Delete or edit? (d/e)");
+              in.nextLine();
               String or = in.nextLine();
               if (or.equals("d")){
                 newList.getCursorSlide().setBullet(null, index);
@@ -119,6 +120,46 @@ public class PresentationManager{
       }
       if (s.equals("A") || s.equals("a")){
         System.out.println("Enter the slide title: ");
+        String title = in.nextLine();
+        System.out.println("Enter the slide duration:");
+        if (in.hasNextDouble()){
+          double duration = in.nextDouble();
+          Slide newSlide = new Slide(title, duration);
+          in.nextLine();
+          for (int i =1; i <= 5; i++){
+            System.out.println("Bullet " + i + ": ");
+            String bul = in.nextLine();
+            newSlide.setBullet(bul, i);
+            if (i < 5){
+              System.out.println("Add another bullet point? (y/n)");
+              String choice = in.nextLine();
+              if (choice.equals("n")){
+                i+= 10;
+                newList.appendToTail(newSlide);
+                System.out.println("Slide " + title + " added to presentation.");
+
+              }
+              if (!choice.equals("n")&& !choice.equals("y")){
+                i+= 10;
+                System.out.println("Invalid input.");
+                isRunning = false;
+                isRunning = true;
+              }
+            }
+            if (i == 5){
+              i+= 10;
+              newList.appendToTail(newSlide);
+              System.out.println("No more bullets allowed. Slide is full.");
+              System.out.println("Slide " + title + " added to presentation.");
+            }
+          }
+        }
+        else {
+          System.out.println("Invalid input.");
+          isRunning = false;
+          isRunning = true;
+        }
+      /*  System.out.println("Enter the slide title: ");
         String title = in.nextLine();
         System.out.println("Enter the slide duration:");
         if (in.hasNextDouble()){
@@ -194,8 +235,70 @@ public class PresentationManager{
           System.out.println("Invalid input.");
           isRunning = false;
           isRunning = true;
+        } */
+
+      }
+
+      if (s.equals("I") || s.equals("i")){
+        System.out.println("Enter the slide title: ");
+        String title = in.nextLine();
+        System.out.println("Enter the slide duration:");
+        if (in.hasNextDouble()){
+          double duration = in.nextDouble();
+          Slide newSlide = new Slide(title, duration);
+          in.nextLine();
+          for (int i =1; i <= 5; i++){
+            System.out.println("Bullet " + i + ": ");
+            String bul = in.nextLine();
+            newSlide.setBullet(bul, i);
+            if (i < 5){
+              System.out.println("Add another bullet point? (y/n)");
+              String choice = in.nextLine();
+              if (choice.equals("n")){
+                i+= 10;
+                newList.insertBeforeCursor(newSlide);
+                System.out.println("Slide " + title + " added to presentation.");
+
+              }
+              if (!choice.equals("n")&& !choice.equals("y")){
+                i+= 10;
+                System.out.println("Invalid input.");
+                isRunning = false;
+                isRunning = true;
+              }
+            }
+            if (i == 5){
+              i+= 10;
+              newList.insertBeforeCursor(newSlide);
+              System.out.println("No more bullets allowed. Slide is full.");
+              System.out.println("Slide " + title + " added to presentation.");
+            }
+          }
+        }
+        else {
+          System.out.println("Invalid input.");
+          isRunning = false;
+          isRunning = true;
         }
       }
+
+      if (s.equals("R") || s.equals("r")){
+        try{
+          String title = newList.getCursorSlide().getTitle();
+          newList.removeCursor();
+          System.out.println("Slide " + title + " has been removed.");
+        }
+        catch (EndOfListException e){
+
+        }
+      }
+
+      if (s.equals("H") || s.equals("h")){
+        newList.resetCursorToHead();
+        System.out.println("Cursor reset to head.");
+      }
+
+
 
     }
 
