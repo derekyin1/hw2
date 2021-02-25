@@ -107,9 +107,11 @@ IllegalArgumentException when index is invalid.
 
 */
   public String getBullet(int i){
-    String bullet = "";
+    String bullet = null;
     if (i >= 1 && i <= MAX_BULLETS){
-      bullet += bullets[i-1];
+      if (bullets[i-1] != null){
+        bullet = bullets[i-1];
+      }
       return bullet;
     }
     else throw new IllegalArgumentException();
@@ -130,18 +132,26 @@ IllegalArgumentException when index is invalid.
         bulCount++;
       }
       if (bullet == null){
-        int count = this.getNumBullets();
-        for (int inc = i; inc < count; inc++){
-          bullets[i-1] = bullets[i];
+        int count = bulCount;
+        for (int inc = i; inc <= count; inc++){
+          bullets[inc-1] = bullets[inc];
         }
+        bullets[count-1] = null;
         if (count > 0){
-        bulCount--;
-      }
+          bulCount--;
+        }
       }
     }
     else throw new IllegalArgumentException();
   }
 
+public String arrayToString(){
+  String toPrint = "";
+  for (int i = 0; i < MAX_BULLETS; i++){
+    toPrint += bullets[i] + ",";
+  }
+  return toPrint;
+}
 /**This method formats a Slide in a String form to be printed in the terminal
 
 @return
@@ -153,12 +163,32 @@ Returns formatted String that describes a Slide.
     toPrint += this.getTitle();
     toPrint += "\n=========================================================\n";
     for (int i = 1; i <= MAX_BULLETS; i++){
-      toPrint += i + ". " + bullets[i-1];
-      toPrint += "\n";
+      if (bullets[i-1] != null){
+        toPrint += i + ". " + bullets[i-1];
+        toPrint += "\n";
+      }
     }
     toPrint += "\n=========================================================\n";
     return toPrint;
   }
+
+public static void main(String[] args) {
+  Slide test = new Slide("test", 1.2);
+  test.setBullet("This is a test1", 1);
+  test.setBullet("This is a test2", 2);
+  test.setBullet("This is a test3", 3);
+  test.setBullet("This is a test4", 4);
+  System.out.println(test.toString());
+  System.out.println(test.arrayToString());
+  System.out.println("Removed bullet at index 2");
+  test.setBullet(null, 2);
+  System.out.println(test.toString());
+  System.out.println(test.arrayToString());
+  System.out.println("Removed bullet at index 2");
+  test.setBullet(null,2);
+  System.out.println(test.toString());
+  System.out.println(test.arrayToString());
+}
 
 
 
