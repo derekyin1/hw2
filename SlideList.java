@@ -83,10 +83,10 @@ public class SlideList{
     if (newSlide != null){
       SlideListNode newNode = new SlideListNode(newSlide);
       if (tail != null){
-        tail.setNext(newNode);
         newNode.setPrev(tail);
-        newNode.setNext(null);
-        newNode = tail;
+        tail.setNext(newNode);
+        tail = newNode;
+        cursor = newNode;
       }
       if (tail == null){
         head = newNode;
@@ -115,11 +115,16 @@ public class SlideList{
 
   public String toString(){
     String toPrint = "\n=========================================================\n";
-    toPrint += String.format("%-10s%-20s%-19s%6s", "Slide", "Title", "Duration", "Bullets");
+    toPrint += String.format("%-11s%-20s%-19s%6s", " Slide", "Title", "Duration", "Bullets");
     toPrint += "\n---------------------------------------------------------\n";
     SlideListNode init = head;
-    for (int i = 1; i < size; i++){
-      toPrint += String.format("%-10s%-20s%-14s%6s", i, init.getData().getTitle(), init.getData().getDuration(), init.getData().getNumBullets());
+    for (int i = 1; i <= size; i++){
+      if (cursor == init){
+        toPrint += String.format("%-11s%-20s%-14s%6s", "-> " + i, init.getData().getTitle(), init.getData().getDuration(), init.getData().getNumBullets());
+      }
+      else{
+        toPrint += String.format("%-11s%-20s%-14s%6s", "   " + i, init.getData().getTitle(), init.getData().getDuration(), init.getData().getNumBullets());
+      }
       toPrint += "\n";
       init = init.getNext();
     }
@@ -132,10 +137,13 @@ public class SlideList{
   public static void main(String[] args) {
     SlideList test = new SlideList();
     Slide testSlide = new Slide("Test one", 1.4);
+    testSlide.setBullet("Haha", 1);
+    testSlide.setBullet(null, 1);
     test.insertBeforeCursor(testSlide);
     test.insertBeforeCursor(testSlide);
     test.insertBeforeCursor(testSlide);
     test.appendToTail(testSlide);
+    test.insertBeforeCursor(testSlide);
     System.out.println(test.toString());
   }
 }

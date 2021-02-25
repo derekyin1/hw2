@@ -1,7 +1,7 @@
 public class Slide{
   public static final int MAX_BULLETS = 5;
   private String title;
-  private String[] bullets;
+  private String[] bullets = new String[MAX_BULLETS];
   private double duration;
   private int bulCount;
 
