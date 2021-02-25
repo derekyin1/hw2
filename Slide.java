@@ -7,11 +7,13 @@ public class Slide{
 
   public Slide(){
     duration = 0.0;
+    bulCount=0;
   }
 
   public Slide(String newTitle, double newDuration){
     title = newTitle;
     duration = newDuration;
+    bulCount = 0;
   }
 
   public String getTitle(){
@@ -69,19 +71,23 @@ public class Slide{
   }
 
   public String toString(){
-    String toPrint = "Slideshow Summary:";
-    toPrint += "\n================================================================\n";
+    String toPrint = "";
+    toPrint += "\n=========================================================\n";
     toPrint += this.getTitle();
-    toPrint += "\n================================================================\n";
-    for (int i = 1; i < bulCount; i++){
-      toPrint += i + ". " + this.getBullet(i);
+    toPrint += "\n=========================================================\n";
+    for (int i = 1; i <= MAX_BULLETS; i++){
+      toPrint += i + ". " + bullets[i-1];
+      toPrint += "\n";
     }
-    toPrint += "\n================================================================\n";
+    toPrint += "\n=========================================================\n";
     return toPrint;
   }
 
   public static void main(String[] args) {
     Slide test = new Slide("chicken", 12.4);
+    test.setBullet("This is a test!", 1);
+    test.setBullet("This is the second test!", 3);
+    System.out.println(test.toString());
   }
 
 

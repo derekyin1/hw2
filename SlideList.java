@@ -40,13 +40,13 @@ public class SlideList{
     cursor = head;
   }
 
-  public void cursorForward() throws EndOfListException{
+  public void cursorForward() {
     if (cursor != tail){
       cursor = cursor.getNext();
     }
   }
 
-  public void cursorBackward() throws EndOfListException{
+  public void cursorBackward() {
     if (cursor != head){
       cursor = cursor.getPrev();
     }
@@ -86,7 +86,6 @@ public class SlideList{
         newNode.setPrev(tail);
         tail.setNext(newNode);
         tail = newNode;
-        cursor = newNode;
       }
       if (tail == null){
         head = newNode;
@@ -114,7 +113,8 @@ public class SlideList{
   }
 
   public String toString(){
-    String toPrint = "\n=========================================================\n";
+    String toPrint = "Slideshow Summary:";
+    toPrint += "\n=========================================================\n";
     toPrint += String.format("%-11s%-20s%-19s%6s", " Slide", "Title", "Duration", "Bullets");
     toPrint += "\n---------------------------------------------------------\n";
     SlideListNode init = head;
