@@ -181,12 +181,17 @@ public class SlideList{
         cursor = cursor.getPrev();
       }
       else if (tail == cursor && head == cursor){
+        cursor.getData().setDuration(0.01);
+        cursor.setNext(null);
+        cursor.setPrev(null);
         head = null;
         tail = null;
         cursor = null;
       }
-      size--;
-      return oldSlide;
+      if (size > 0){
+        size--;
+        return oldSlide;
+      }
     }
     else{
       throw new EndOfListException("");
@@ -194,6 +199,7 @@ public class SlideList{
   /*  else{
       throw new IllegalArgumentException("");
     } */
+    return null;
   }
 
 /** This method creates a formatted string to be printed in the terminal.

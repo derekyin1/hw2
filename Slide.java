@@ -193,23 +193,6 @@ public class Slide{
     return toPrint;
   }
 
-public static void main(String[] args) {
-  Slide test = new Slide("test", 1.2);
-  test.setBullet("This is a test1", 1);
-  test.setBullet("This is a test2", 2);
-  test.setBullet("This is a test3", 3);
-  test.setBullet("This is a test4", 4);
-  System.out.println(test.toString());
-  System.out.println(test.arrayToString());
-  System.out.println("Removed bullet at index 2");
-  test.setBullet(null, 2);
-  System.out.println(test.toString());
-  System.out.println(test.arrayToString());
-  System.out.println("Removed bullet at index 2");
-  test.setBullet(null,2);
-  System.out.println(test.toString());
-  System.out.println(test.arrayToString());
-}
 
 
 
